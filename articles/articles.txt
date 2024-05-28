@@ -5,5 +5,11 @@ https://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html
 # What Every C Programmer Should Know About Undefined Behavior #2/3
 https://blog.llvm.org/2011/05/what-every-c-programmer-should-know_14.html
 
+# What Every C Programmer Should Know About Undefined Behavior #3/3
+https://blog.llvm.org/2011/05/what-every-c-programmer-should-know_21.html
+
 # A Guide to Undefined Behavior in C and C++, Part 1
 https://blog.regehr.org/archives/213
+
+# An Executable Semantics For C Is Useful
+https://blog.regehr.org/archives/523
