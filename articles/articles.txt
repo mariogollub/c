@@ -21,5 +21,9 @@ https://blog.regehr.org/archives/213
 # A Guide to Undefined Behavior in C and C++, Part 2
 https://blog.regehr.org/archives/226
 
+# A Guide to Undefined Behavior in C and C++, Part 3
+https://blog.regehr.org/archives/
+# |-> asm volatile ("" : : : "memory"); // for debugging
+
 # An Executable Semantics For C Is Useful
 https://blog.regehr.org/archives/523
