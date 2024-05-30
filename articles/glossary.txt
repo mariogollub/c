@@ -1,3 +1,5 @@
 # Glossary
 
+LGTM = looks good to me
+
 OOB array = Out Of Bounds (boundaries) array
