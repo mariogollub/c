@@ -1,3 +1,0 @@
-# Glossary
-
-OOB array = Out Of Bounds (boundaries) array
