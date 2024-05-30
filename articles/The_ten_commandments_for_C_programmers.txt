@@ -5,3 +5,7 @@ https://www.lysator.liu.se/c/ten-commandments.html
 # "Die 10 Gebote der egolosen Programmierung" by Veit Richter
 # „The Psychology of Computer Programming“, Gerald M. Weinberg (1971)
 https://www.emendare.de/2018/02/die-10-gebote-der-egolosen-softwareentwicklung/
+
+# German article
+# Die 10 Gebote für C Programmierer (von Henry Spencer) mit Anmerkungen
+http://bewatermyfriend.org/posts/2006/10-07.16-23-45-computer.html
