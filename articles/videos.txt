@@ -2,4 +2,11 @@
 # Eskil Steenberg
 # How I program C
 https://www.youtube.com/watch?v=443UNeGrFoM
-(*****)
+
+-->	unravel.org
+--> gamepipeline.org 
+--> quelsolaar.com
+
+# Eskil Steenberg
+# Advanced C: The UB and optimizations that trick good programmers.
+https://www.youtube.com/watch?v=w3_e9vZj7D8
