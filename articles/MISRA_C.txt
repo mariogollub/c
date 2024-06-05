@@ -1,0 +1,9 @@
+# MISRA C 
+
+#English
+https://en.wikipedia.org/wiki/MISRA_C
+
+#German
+https://de.wikipedia.org/wiki/MISRA-C
+
+# find further documents on the internet...
