@@ -1,6 +1,9 @@
 # C semantics
 https://github.com/kframework/c-semantics
 
+# godbolt (compiler explorer)
+godbolt.org
+
 # Valgrind
 https://valgrind.org/
 https://valgrind.org/docs/manual/manual.html
