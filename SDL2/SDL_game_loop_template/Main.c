@@ -8,6 +8,7 @@ SDL_Renderer* renderer = NULL;
 
 int last_frame_time = 0;
 
+// prototype for pong!
 struct ball {
     float x;
     float y;
