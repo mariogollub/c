@@ -58,8 +58,24 @@ void process_input()
         game_is_running = FALSE;
         break;
     case SDL_KEYDOWN:
-        if (event.key.keysym.sym == SDLK_ESCAPE)
+        switch (event.key.keysym.sym)
+        {
+        case SDLK_ESCAPE:
             game_is_running = FALSE;
+            break;
+        case SDLK_LEFT:
+            printf("Left key was pressed.\n ");
+            break;
+        case SDLK_RIGHT:
+            printf("Richt key was pressed.\n ");
+            break;
+        case SDLK_UP:
+            printf("Up key was pressed.\n ");
+            break;
+        case SDLK_DOWN:
+            printf("Down key was pressed.\n ");
+            break;
+        }
     }
 }
 
