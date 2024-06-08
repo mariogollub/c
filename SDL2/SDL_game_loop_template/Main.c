@@ -65,15 +65,19 @@ void process_input()
             break;
         case SDLK_LEFT:
             printf("Left key was pressed.\n ");
+            ball.x -= 10 * delta_time;
             break;
         case SDLK_RIGHT:
-            printf("Richt key was pressed.\n ");
+            printf("Right key was pressed.\n ");
+            ball.x += 10 * delta_time;
             break;
         case SDLK_UP:
             printf("Up key was pressed.\n ");
+            ball.y += 10 * delta_time;
             break;
         case SDLK_DOWN:
             printf("Down key was pressed.\n ");
+            ball.y -= 10 * delta_time;
             break;
         }
     }
@@ -101,8 +105,7 @@ void update()
 
     last_frame_time = SDL_GetTicks();
 
-    ball.x += 70 * delta_time;
-    ball.y += 50 * delta_time;
+
 }
 
 void render()
