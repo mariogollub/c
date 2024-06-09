@@ -1,1 +1,3 @@
 "Microcomputer Displays, Graphics and Animation", Bruce Artwick, 1984
+
+"Zen of Graphics Programming: Master the Art of Creating Fast PC Games and Graphics Applications", Michael Abrash, 1996
