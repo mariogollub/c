@@ -1,3 +1,20 @@
+# "Talks that changed the way I think about programming"
+# Mike Acton: Data-orientated Design
+# Jonathan Blow: How to program independent games
+# Eskil Steenberg: How I program in C
+# Rich Hickey: Hammock Driven Development
+# Rich Hickey: Simple Made Easy
+# Brian Will: Why OOP is Bad
+# Abner Coimbre: What Programming is Never About
+# Scott Meyers - CPU Caches and Why You Care
+# Jeff and Casey Show: The Evils of Non-native Programming
+# Jeff and Casey’s Guide to Becoming a Bigger Programmer
+# Hadi Hariri: The Silver Bullet Syndrome
+https://www.opowell.com/post/talks-that-changed-the-way-i-think-about-programming/#:~:text=Abner%20Coimbre%3A%20What%20Programming%20is,not%20on%20the%20code%20itself.
+
+
+
+
 
 # What Every C Programmer Should Know About Undefined Behavior #1/3
 https://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html
