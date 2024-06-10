@@ -15,5 +15,5 @@ https://www.youtube.com/watch?v=w3_e9vZj7D8
 # Interview: "Designing a UI System" with Ryan Fleury"
 https://www.youtube.com/watch?v=ueWE7qDbZ2w
 
-# PODCAST: Jeff and Casey Show
+# PODCAST: Jeff Roberts and Casey Muratori Show
 https://jeffandcaseyshow.com/
