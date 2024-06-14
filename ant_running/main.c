@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <conio.h>
 #include <windows.h>
 
 #define MAX_ENTITY_COUNT 1000
@@ -21,7 +20,7 @@ typedef struct entity{
 }entity_t;
 
 
-uint32_t generateEntities(entity_t *e)
+uint32_t generateEntities(entity_t *e, uint8_t om[MAX_X_POS][MAX_Y_POS])
 {
 	srand((unsigned int)time(NULL));
 
@@ -41,11 +40,14 @@ uint32_t generateEntities(entity_t *e)
 					e[entityCount].entityIndex = entityCount;
 					e[entityCount].entityPositionX = x;
 					e[entityCount].entityPositionY = y;
+
+					om[x][y] = 1;
+
 					entityCount++;
 				}
 				else
 				{
-					continue;
+					om[x][y] = 0;
 				}
 			}
 		}
@@ -83,6 +85,25 @@ void renderEntities(entity_t *e)
 	}
 }
 
+void moveEntities(entity_t *e, uint8_t om[MAX_X_POS][MAX_Y_POS])
+{
+	uint32_t counter = 0;
+
+	for(uint32_t i=0; i < entityCount; i++)
+	{
+		/*
+			if (e[counter].entityPositionX == x)
+			{
+				if (e[counter].entityPositionY == y)
+				{
+					printf("E");
+					counter++;
+				}
+			}
+		*/
+	}
+}
+
 int main(void)
 {
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -90,15 +111,18 @@ int main(void)
 //	entity_t *pEntity = &myEntity[0];
 
 	entity_t *pEntity = malloc(sizeof(entity_t) * MAX_ENTITY_COUNT);
+	uint8_t myOccupationMatrix[MAX_X_POS][MAX_Y_POS];
 
-	entityCount = generateEntities(pEntity);
+
+	entityCount = generateEntities(pEntity, myOccupationMatrix);
 
 	renderEntities(pEntity);
+	printf("\nEntity Count: %d\n", entityCount);
 
 	for(uint32_t i=0; i<10; i++)
 	{
-		sleep(0.5);
-		moveEntities(pEntity);
+		_sleep(1);
+		moveEntities(pEntity, myOccupationMatrix);
 		renderEntities(pEntity);
 	}
 /*
@@ -115,6 +139,6 @@ int main(void)
 	COORD pos2 = {0,22};
 	SetConsoleCursorPosition(hConsole, pos2);
 
-	printf("\nEntity Count: %d\n", entityCount);
+
 	return 0;
 }
