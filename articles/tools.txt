@@ -7,3 +7,6 @@ godbolt.org
 # Valgrind
 https://valgrind.org/
 https://valgrind.org/docs/manual/manual.html
+
+#short cut - git cmd
+alias gitlog='git log --graph --pretty=format:'\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\" --abbrev-commit'
