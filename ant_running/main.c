@@ -2,11 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <string.h>
 #include <windows.h>
 
 #define MAX_ENTITY_COUNT 100
 #define MAX_X_POS 100
 #define MAX_Y_POS 20
+
 
 HANDLE hConsole;
 
@@ -18,6 +20,7 @@ typedef struct entity{
 	uint32_t fieldNumber;
 	uint32_t entityPositionX;
 	uint32_t entityPositionY;
+	uint32_t entityColor;
 }entity_t;
 
 entity_t aEntities[MAX_ENTITY_COUNT];
@@ -45,6 +48,7 @@ void generateEntities(uint8_t om[MAX_X_POS][MAX_Y_POS])
 					aEntities[entityCount].fieldNumber = ((y * MAX_X_POS) + x);
 					aEntities[entityCount].entityPositionX = x;
 					aEntities[entityCount].entityPositionY = y;
+					aEntities[entityCount].entityColor = (randomNumber % 6);
 
 					om[x][y] = 1;
 
@@ -76,7 +80,22 @@ void renderEntities(void)
 			{
 				if (aEntities[counter].entityPositionY == y)
 				{
-					printf("E");
+					if (aEntities[counter].entityColor == 0)
+						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_RED);
+					if (aEntities[counter].entityColor == 1)
+						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+					if (aEntities[counter].entityColor == 2)
+						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN);
+					if (aEntities[counter].entityColor == 3)
+						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_BLUE);
+					if (aEntities[counter].entityColor == 4)
+						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE);
+					if (aEntities[counter].entityColor == 5)
+						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
+					if (aEntities[counter].entityColor == 6)
+						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+					printf("~");
+					SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 					counter++;
 
 					while ( (aEntities[counter].entityPositionX == x) &&
@@ -180,8 +199,9 @@ void moveEntities(uint8_t om[MAX_X_POS][MAX_Y_POS])
 				aEntities[j].entityPositionY = aEntities[j + 1].entityPositionY;
 				aEntities[j + 1].entityPositionY = tempY;
 
-
-				
+				tempField = aEntities[j].entityColor;
+				aEntities[j].entityColor = aEntities[j + 1].entityColor;
+				aEntities[j + 1].entityColor = tempField;
 			}
 			else
 			{
