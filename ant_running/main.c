@@ -4,9 +4,9 @@
 #include <stdint.h>
 #include <windows.h>
 
-#define MAX_ENTITY_COUNT 10
-#define MAX_X_POS 10
-#define MAX_Y_POS 5
+#define MAX_ENTITY_COUNT 100
+#define MAX_X_POS 100
+#define MAX_Y_POS 20
 
 HANDLE hConsole;
 
@@ -14,13 +14,15 @@ HANDLE hConsole;
 uint32_t entityCount;
 
 typedef struct entity{
+	uint32_t entityIndex;
 	uint32_t fieldNumber;
 	uint32_t entityPositionX;
 	uint32_t entityPositionY;
 }entity_t;
 
 entity_t aEntities[MAX_ENTITY_COUNT];
- 
+
+
 void generateEntities(uint8_t om[MAX_X_POS][MAX_Y_POS])
 {
 	srand((unsigned int)time(NULL));
@@ -39,6 +41,7 @@ void generateEntities(uint8_t om[MAX_X_POS][MAX_Y_POS])
 				int randomNumber = rand();
 				if((randomNumber % 20) == 0)
 				{
+					aEntities[entityCount].entityIndex = entityCount;
 					aEntities[entityCount].fieldNumber = ((y * MAX_X_POS) + x);
 					aEntities[entityCount].entityPositionX = x;
 					aEntities[entityCount].entityPositionY = y;
@@ -60,8 +63,8 @@ void renderEntities(void)
 {
 	uint32_t counter = 0;
 
-//    COORD pos = {0, 0};
-//    SetConsoleCursorPosition(hConsole, pos);
+    COORD pos = {0, 0};
+    SetConsoleCursorPosition(hConsole, pos);
 
 	//    WriteConsole(hConsole, "Hello", 5, NULL, NULL);
 
@@ -75,6 +78,12 @@ void renderEntities(void)
 				{
 					printf("E");
 					counter++;
+
+					while ( (aEntities[counter].entityPositionX == x) &&
+							(aEntities[counter].entityPositionY == y) )
+					{
+						counter++;
+					}
 				}
 			}
 			else
@@ -84,15 +93,16 @@ void renderEntities(void)
 		}
 		printf("\n");
 	}
-
+/*
 	for(uint32_t counter; counter < entityCount; counter++)
 	{
+		printf("entityIndex:      %d\n", aEntities[counter].entityIndex);
 		printf("fieldNumber:      %d\n", aEntities[counter].fieldNumber);
 		printf("entityPosistionX: %d\n", aEntities[counter].entityPositionX);
 		printf("entityPosistionY: %d\n", aEntities[counter].entityPositionY);
 		printf("\n");
 	}
-
+*/
 }
 
 
@@ -109,36 +119,36 @@ void moveEntities(uint8_t om[MAX_X_POS][MAX_Y_POS])
 				if (aEntities[counter].entityPositionY != 0)
 				{
 					aEntities[counter].entityPositionY--;
-					printf("%d --> ", aEntities[counter].fieldNumber);
+					//printf("%d --> ", aEntities[counter].fieldNumber);
 					aEntities[counter].fieldNumber = ((aEntities[counter].entityPositionY * MAX_X_POS) + aEntities[counter].entityPositionX);
-					printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
+					//printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
 				}
 				break;
 			case 1:	// move right
-				if (aEntities[counter].entityPositionX != MAX_X_POS)
+				if (aEntities[counter].entityPositionX != (MAX_X_POS - 1))
 				{
 					aEntities[counter].entityPositionX++;
-					printf("%d --> ", aEntities[counter].fieldNumber);
+					//printf("%d --> ", aEntities[counter].fieldNumber);
 					aEntities[counter].fieldNumber = ((aEntities[counter].entityPositionY * MAX_X_POS) + aEntities[counter].entityPositionX);
-					printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
+					//printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
 				}
 				break;
 			case 2:	// move down
-				if (aEntities[counter].entityPositionY != MAX_Y_POS)
+				if (aEntities[counter].entityPositionY != (MAX_Y_POS - 1))
 				{
 					aEntities[counter].entityPositionY++;
-					printf("%d --> ", aEntities[counter].fieldNumber);
+					//printf("%d --> ", aEntities[counter].fieldNumber);
 					aEntities[counter].fieldNumber = ((aEntities[counter].entityPositionY * MAX_X_POS) + aEntities[counter].entityPositionX);
-					printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
+					//printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
 				}
 				break;
 			case 3:	// move left
 				if (aEntities[counter].entityPositionX != 0)
 				{
 					aEntities[counter].entityPositionX--;
-					printf("%d --> ", aEntities[counter].fieldNumber);
+					//printf("%d --> ", aEntities[counter].fieldNumber);
 					aEntities[counter].fieldNumber = ((aEntities[counter].entityPositionY * MAX_X_POS) + aEntities[counter].entityPositionX);
-					printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
+					//printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
 				}
 				break;
 		}
@@ -153,7 +163,11 @@ void moveEntities(uint8_t om[MAX_X_POS][MAX_Y_POS])
 		{
 			if (aEntities[j].fieldNumber > aEntities[j + 1].fieldNumber)
 			{
-				printf("array[%d].fieldNumber (%d) > array[%d].fieldNumber (%d)\n", j, aEntities[j].fieldNumber, (j+1), aEntities[j+1].fieldNumber);
+				//printf("array[%d].fieldNumber (%d) > array[%d].fieldNumber (%d)\n", j, aEntities[j].fieldNumber, (j+1), aEntities[j+1].fieldNumber);
+				tempField = aEntities[j].entityIndex;
+				aEntities[j].entityIndex = aEntities[j + 1].entityIndex;
+				aEntities[j + 1].entityIndex = tempField;
+
 				tempField = aEntities[j].fieldNumber;
 				aEntities[j].fieldNumber = aEntities[j + 1].fieldNumber;
 				aEntities[j + 1].fieldNumber = tempField;
@@ -171,10 +185,10 @@ void moveEntities(uint8_t om[MAX_X_POS][MAX_Y_POS])
 			}
 			else
 			{
-				printf("array[%d].fieldNumber (%d) < array[%d].fieldNumber (%d)\n", j, aEntities[j].fieldNumber, (j+1), aEntities[j+1].fieldNumber);
+				//printf("array[%d].fieldNumber (%d) < array[%d].fieldNumber (%d)\n", j, aEntities[j].fieldNumber, (j+1), aEntities[j+1].fieldNumber);
 			}
 		}
-		printf("\n");
+		//printf("\n");
 	}
 }
 
@@ -191,7 +205,7 @@ int main(void)
 	renderEntities();
 	printf("\nEntity Count: %d\n", entityCount);
 
-	for(uint32_t i=0; i<1; i++)
+	for(uint32_t i=0; i<50; i++)
 	{
 		_sleep(1);
 		moveEntities(myOccupationMatrix);
@@ -202,8 +216,8 @@ int main(void)
 
 
 
-//	COORD pos2 = {0,22};
-//	SetConsoleCursorPosition(hConsole, pos2);
+	COORD pos2 = {0,22};
+	SetConsoleCursorPosition(hConsole, pos2);
 
 
 	return 0;
