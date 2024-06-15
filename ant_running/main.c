@@ -5,8 +5,8 @@
 #include <windows.h>
 
 #define MAX_ENTITY_COUNT 10
-#define MAX_X_POS 100
-#define MAX_Y_POS 20
+#define MAX_X_POS 10
+#define MAX_Y_POS 5
 
 HANDLE hConsole;
 
@@ -60,9 +60,10 @@ void renderEntities(void)
 {
 	uint32_t counter = 0;
 
-    COORD pos = {0, 0};
-    SetConsoleCursorPosition(hConsole, pos);
-//    WriteConsole(hConsole, "Hello", 5, NULL, NULL);
+//    COORD pos = {0, 0};
+//    SetConsoleCursorPosition(hConsole, pos);
+
+	//    WriteConsole(hConsole, "Hello", 5, NULL, NULL);
 
 	for(uint32_t y=0; y < MAX_Y_POS; y++)
 	{
@@ -83,7 +84,7 @@ void renderEntities(void)
 		}
 		printf("\n");
 	}
-/*
+
 	for(uint32_t counter; counter < entityCount; counter++)
 	{
 		printf("fieldNumber:      %d\n", aEntities[counter].fieldNumber);
@@ -91,7 +92,7 @@ void renderEntities(void)
 		printf("entityPosistionY: %d\n", aEntities[counter].entityPositionY);
 		printf("\n");
 	}
-*/
+
 }
 
 
@@ -108,36 +109,36 @@ void moveEntities(uint8_t om[MAX_X_POS][MAX_Y_POS])
 				if (aEntities[counter].entityPositionY != 0)
 				{
 					aEntities[counter].entityPositionY--;
-					//printf("%d --> ", aEntities[counter].fieldNumber);
+					printf("%d --> ", aEntities[counter].fieldNumber);
 					aEntities[counter].fieldNumber = ((aEntities[counter].entityPositionY * MAX_X_POS) + aEntities[counter].entityPositionX);
-					//printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
+					printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
 				}
 				break;
 			case 1:	// move right
 				if (aEntities[counter].entityPositionX != MAX_X_POS)
 				{
 					aEntities[counter].entityPositionX++;
-					//printf("%d --> ", aEntities[counter].fieldNumber);
+					printf("%d --> ", aEntities[counter].fieldNumber);
 					aEntities[counter].fieldNumber = ((aEntities[counter].entityPositionY * MAX_X_POS) + aEntities[counter].entityPositionX);
-					//printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
+					printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
 				}
 				break;
 			case 2:	// move down
 				if (aEntities[counter].entityPositionY != MAX_Y_POS)
 				{
 					aEntities[counter].entityPositionY++;
-					//printf("%d --> ", aEntities[counter].fieldNumber);
+					printf("%d --> ", aEntities[counter].fieldNumber);
 					aEntities[counter].fieldNumber = ((aEntities[counter].entityPositionY * MAX_X_POS) + aEntities[counter].entityPositionX);
-					//printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
+					printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
 				}
 				break;
 			case 3:	// move left
 				if (aEntities[counter].entityPositionX != 0)
 				{
 					aEntities[counter].entityPositionX--;
-					//printf("%d --> ", aEntities[counter].fieldNumber);
+					printf("%d --> ", aEntities[counter].fieldNumber);
 					aEntities[counter].fieldNumber = ((aEntities[counter].entityPositionY * MAX_X_POS) + aEntities[counter].entityPositionX);
-					//printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
+					printf("%d = (%d * %d) + %d)\n", aEntities[counter].fieldNumber, aEntities[counter].entityPositionY, MAX_X_POS, aEntities[counter].entityPositionX);
 				}
 				break;
 		}
@@ -190,7 +191,7 @@ int main(void)
 	renderEntities();
 	printf("\nEntity Count: %d\n", entityCount);
 
-	for(uint32_t i=0; i<10; i++)
+	for(uint32_t i=0; i<1; i++)
 	{
 		_sleep(1);
 		moveEntities(myOccupationMatrix);
@@ -201,8 +202,8 @@ int main(void)
 
 
 
-	COORD pos2 = {0,22};
-	SetConsoleCursorPosition(hConsole, pos2);
+//	COORD pos2 = {0,22};
+//	SetConsoleCursorPosition(hConsole, pos2);
 
 
 	return 0;
