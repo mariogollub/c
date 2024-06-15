@@ -48,7 +48,7 @@ void generateEntities(uint8_t om[MAX_X_POS][MAX_Y_POS])
 					aEntities[entityCount].fieldNumber = ((y * MAX_X_POS) + x);
 					aEntities[entityCount].entityPositionX = x;
 					aEntities[entityCount].entityPositionY = y;
-					aEntities[entityCount].entityColor = (randomNumber % 6);
+					aEntities[entityCount].entityColor = (randomNumber % 7);
 
 					om[x][y] = 1;
 
@@ -87,12 +87,14 @@ void renderEntities(void)
 					if (aEntities[counter].entityColor == 2)
 						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN);
 					if (aEntities[counter].entityColor == 3)
-						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_BLUE);
+						SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE);
 					if (aEntities[counter].entityColor == 4)
-						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE);
+						SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN);
 					if (aEntities[counter].entityColor == 5)
-						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
+						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE);
 					if (aEntities[counter].entityColor == 6)
+						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
+					if (aEntities[counter].entityColor == 7)
 						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 					printf("~");
 					SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
