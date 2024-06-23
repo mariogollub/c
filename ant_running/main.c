@@ -4,10 +4,28 @@
 #include <stdint.h>
 #include <string.h>
 #include <windows.h>
+#include <conio.h>
 
 #define MAX_ENTITY_COUNT 100
 #define MAX_X_POS 100
 #define MAX_Y_POS 20
+#define NUMBER_OF_CYCLES 100
+
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+   #ifdef _WIN64
+      #define OS 1
+   #else
+      #define OS 2
+   #endif
+#elif __MSDOS__
+	#define OS 3
+#elif __unix__
+	#define OS 10
+#elif __linux__
+	#define OS 11
+#else
+	#define OS 0
+#endif
 
 
 HANDLE hConsole;
@@ -81,11 +99,20 @@ void renderEntities(void)
 				if (aEntities[counter].entityPositionY == y)
 				{
 					if (aEntities[counter].entityColor == 0)
-						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_RED);
+					{
+						SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED);
+//						printf("\e[0;31m"); // red
+					}
 					if (aEntities[counter].entityColor == 1)
-						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+					{
+						SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+//						printf("\e[0;32m"); // green
+					}
 					if (aEntities[counter].entityColor == 2)
-						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN);
+					{
+//						printf("\e[0;33m"); // yellow
+						SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN);
+					}
 					if (aEntities[counter].entityColor == 3)
 						SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE);
 					if (aEntities[counter].entityColor == 4)
@@ -96,7 +123,7 @@ void renderEntities(void)
 						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
 					if (aEntities[counter].entityColor == 7)
 						SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-					printf("~");
+					printf("*");
 					SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 					counter++;
 
@@ -225,9 +252,9 @@ int main(void)
 	generateEntities(myOccupationMatrix);
 
 	renderEntities();
-	printf("\nEntity Count: %d\n", entityCount);
+	printf("\nEntity Count: %d\nOS: %d", entityCount, OS);
 
-	for(uint32_t i=0; i<50; i++)
+	for(uint32_t  i = 0; i < NUMBER_OF_CYCLES; i++)
 	{
 		_sleep(1);
 		moveEntities(myOccupationMatrix);
@@ -238,8 +265,8 @@ int main(void)
 
 
 
-	COORD pos2 = {0,22};
-	SetConsoleCursorPosition(hConsole, pos2);
+//	COORD pos2 = {0,22};
+//	SetConsoleCursorPosition(hConsole, pos2);
 
 
 	return 0;
