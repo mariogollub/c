@@ -12,11 +12,11 @@
 #define NUMBER_OF_CYCLES 100
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
-   #ifdef _WIN64
-      #define OS 1
-   #else
-      #define OS 2
-   #endif
+	#ifdef _WIN64
+		#define OS 1
+	#else
+		#define OS 2
+	#endif
 #elif __MSDOS__
 	#define OS 3
 #elif __unix__
