@@ -4,7 +4,6 @@
 #include <stdint.h>
 #include <string.h>
 #include <windows.h>
-#include <conio.h>
 
 #define MAX_ENTITY_COUNT 100
 #define MAX_X_POS 100
