@@ -1,1 +1,26 @@
+### "A Plea for Lean Software" by Niklaus Wirth:
+https://ia601608.us.archive.org/8/items/pdfy-PeRDID4QHBNfcH7s/LeanSoftware_text.pdf
 
+### Comparison of C/POSIX standard library implementations for Linux
+https://www.etalabs.net/compare_libcs.html
+
+### C Programming in Plan 9 from Bell Labs
+https://doc.cat-v.org/plan_9/programming/c_programming_in_plan_9
+
+### plan9 is still very much alive
+https://9front.org/
+
+### Plan 9 C Programming
+https://sdf.org/?tutorials/Plan_9_C
+
+### Learn Code the Hard Way
+https://learncodethehardway.com/client/#/product/learn-c-the-hard-way/
+
+### BSD licansed implementation of rsync (a rewrite of https://learnbchs.org/ developer's rsync)
+https://github.com/kristapsdz/openrsync
+
+### Card Game for C pointers
+https://punkx.org/c-pointer-game/
+
+### C code (violence) by Sigrid Solveig Haflínudóttir
+https://ftrv.se/3#toc_0
